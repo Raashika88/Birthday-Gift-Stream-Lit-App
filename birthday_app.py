@@ -65,7 +65,7 @@ def main_page():
     if st.button("Click to open your gift"):
         st.session_state.page = "gift_page"  # Redirect to the next page
 
-# Function to display the second page with the audio file
+# Function to display the second page with the audio file and feedback hearts
 def gift_page():
     # Create two columns for the layout
     col1, col2 = st.columns([1, 3])  # Adjust column ratio as needed
@@ -96,11 +96,38 @@ def gift_page():
     audio_file = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"  # Example path, update as needed
     st.audio(audio_file, format="audio/mp3")
     
-    st.write("Did you like it??")
+    #st.write("Did you like it??")
     
-    # Display an image below the "Did you like it??"
-    image_below_url = "https://i.pinimg.com/736x/f3/55/d4/f355d4c73ff8d3739dd4c6f08818faa0.jpg"  # Replace with the URL of the image you want to show
-    st.image(image_below_url, width=250)  # Adjust width as needed
+    # Create two columns for the layout of the image below
+    col5, col6 = st.columns([1, 1])  # Create columns to align images side by side
+
+    with col5:
+        # Display the text above the new left image
+        #st.markdown("**Finished listening? Ok, now call me!**")
+
+        # Display the first image on the left side
+        image_below_url = "https://media1.tenor.com/m/YdX_1WLlaC4AAAAd/alverda-verdansa.gif"  # Replace with the URL of the image you want to show
+        st.image(image_below_url, width=150)  # Adjust width as needed
+
+    with col6:
+        # Display the second image on the right side with equal width
+        new_left_image_url = "https://media.tenor.com/0RDUsEAznV8AAAAj/girl-cute.gif"  # Add the new image URL
+        st.image(new_left_image_url, width=160)  # Adjust width as needed
+
+        # Place the "Finished listening?" text on the extreme right
+        st.markdown("""
+        <style>
+            .right-align {
+                position: absolute;
+                right: 0;
+                top: 10px; /* Adjust the vertical position if needed */
+                font-size: 20px; /* Adjust font size */
+            }
+        </style>
+        <div class="right-align">Finished listening? Ok, now call me!</div>
+        """, unsafe_allow_html=True)
+
+        
 
 # Streamlit layout logic
 def app():
