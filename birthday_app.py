@@ -24,7 +24,7 @@ def main_page():
         }
     </style>
     <div class="title">
-        Happieeee Birthdayyyy Babieeee! <span class="heart">❤️</span>
+        Happieeee Birthdayyyy Babieeee<span class="heart">🤍</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -59,13 +59,13 @@ def main_page():
         st.image(gift_image_url, width=600)
 
         # Display the "இனிய பிறந்தநாள் வாழ்த்துக்கள்" message with a heart in dark yellow
-        st.markdown('<div class="birthday-message">இனிய பிறந்தநாள் வாழ்த்துக்கள் ❤️</div>', unsafe_allow_html=True)
+        st.markdown('<div class="birthday-message">இனிய பிறந்தநாள் வாழ்த்துக்கள்🤍</div>', unsafe_allow_html=True)
     
     # When the image is clicked, show the "Open your gift" message
     if st.button("Click to open your gift"):
         st.session_state.page = "gift_page"  # Redirect to the next page
 
-# Function to display the second page with the audio file and feedback hearts
+# Function to display the second page with the audio files and feedback hearts
 def gift_page():
     # Create two columns for the layout
     col1, col2 = st.columns([1, 3])  # Adjust column ratio as needed
@@ -91,20 +91,21 @@ def gift_page():
             Your Birthday Gift is hereeeee pls use your headphones! 🎧
         </div>
         """, unsafe_allow_html=True)
+
+    # Add three audio files (you can replace the URLs with your actual audio file links)
+    audio_file_1 = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"  # Example 1
+   
     
-    # Replace with the actual audio file path or URL
-    audio_file = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"  # Example path, update as needed
-    st.audio(audio_file, format="audio/mp3")
+
+    # Display the audio files
+    st.audio(audio_file_1, format="audio/mp3", start_time=0)  # First audio file
     
-    #st.write("Did you like it??")
     
+
     # Create two columns for the layout of the image below
     col5, col6 = st.columns([1, 1])  # Create columns to align images side by side
 
     with col5:
-        # Display the text above the new left image
-        #st.markdown("**Finished listening? Ok, now call me!**")
-
         # Display the first image on the left side
         image_below_url = "https://media1.tenor.com/m/YdX_1WLlaC4AAAAd/alverda-verdansa.gif"  # Replace with the URL of the image you want to show
         st.image(image_below_url, width=150)  # Adjust width as needed
@@ -126,8 +127,6 @@ def gift_page():
         </style>
         <div class="right-align">Finished listening? Ok, now call me!</div>
         """, unsafe_allow_html=True)
-
-        
 
 # Streamlit layout logic
 def app():
