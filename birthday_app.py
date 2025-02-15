@@ -47,9 +47,8 @@ def gift_page():
         </div>
         """, unsafe_allow_html=True)
     
-    google_drive_id = "1H2Wt9rvy2ZvF-5MexNqCsFR0kb7crZqz"
-    google_drive_url = f"https://drive.google.com/uc?export=download&id={google_drive_id}"
-    local_audio_path = r"C:\Chutamale.m4a"
+    
+    local_audio_path = "C:\\Chutamale.m4a"
     
     try:
         response = requests.get(google_drive_url)
