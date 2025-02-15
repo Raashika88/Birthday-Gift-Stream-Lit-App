@@ -93,7 +93,7 @@ def gift_page():
         """, unsafe_allow_html=True)
 
     # Add three audio files (you can replace the URLs with your actual audio file links)
-    audio_file_1 = "https://drive.google.com/file/d/1H2Wt9rvy2ZvF-5MexNqCsFR0kb7crZqz/view?usp=drive_link"  # Example 1
+    audio_file_1 = r"C:\Users\Admin\Downloads\Chutamale🤍.m4a"  # Example 1
    
     
 
