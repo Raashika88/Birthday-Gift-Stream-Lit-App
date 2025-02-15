@@ -80,8 +80,7 @@ def gift_page():
         """, unsafe_allow_html=True)
 
     # Load and play M4A audio file
-    audio_file_path = r"C:\Users\Admin\Downloads\Chutamale🤍.m4a"
-
+    audio_file_path = r"C:\Chutamale.m4a"
     try:
         with open(audio_file_path, "rb") as f:
             audio_bytes = f.read()
