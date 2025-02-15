@@ -80,7 +80,7 @@ def gift_page():
         """, unsafe_allow_html=True)
 
     # Load and play M4A audio file
-    audio_file_path = r"C:\Chutamale.m4a"
+    audio_file_path = "https://drive.google.com/file/d/1H2Wt9rvy2ZvF-5MexNqCsFR0kb7crZqz/view?usp=drive_link"
     try:
         with open(audio_file_path, "rb") as f:
             audio_bytes = f.read()
