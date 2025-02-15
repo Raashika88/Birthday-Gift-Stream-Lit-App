@@ -1,4 +1,6 @@
 import streamlit as st
+import requests
+import os
 
 # Function to display the first page with the gift box
 def main_page():
@@ -29,7 +31,7 @@ def main_page():
     """, unsafe_allow_html=True)
 
     # Create two columns for the layout
-    col1, col2 = st.columns([1, 3])  # The first column is narrower for the GIF and second image
+    col1, col2 = st.columns([1, 3])  
 
     with col1:
         gif_url = "https://i.pinimg.com/originals/b5/c1/f1/b5c1f10192ce092412534f0af8ea72e4.gif"
@@ -39,9 +41,11 @@ def main_page():
         st.image(second_image_url, width=200)
 
         col3, col4 = st.columns([1, 1])
+
         with col3:
             third_image_url = "https://i.pinimg.com/736x/a8/42/ba/a842ba1c055522fbf1cff787f40b253f.jpg"
             st.image(third_image_url, width=350)
+
         with col4:
             new_image_url = "https://i.pinimg.com/736x/b4/a9/f9/b4a9f931fd06e54bc2a526632755d6a6.jpg"
             st.image(new_image_url, width=150)
@@ -51,16 +55,16 @@ def main_page():
         st.image(gift_image_url, width=600)
 
         st.markdown('<div class="birthday-message">இனிய பிறந்தநாள் வாழ்த்துக்கள்🤍</div>', unsafe_allow_html=True)
-    
+
     if st.button("Click to open your gift"):
         st.session_state.page = "gift_page"
 
 # Function to display the second page with the audio files and feedback hearts
 def gift_page():
     col1, col2 = st.columns([1, 3])
-    
+
     with col1:
-        image_url = "https://img.freepik.com/premium-vector/vector-kawai-cat-is-listening-music_995281-2173.jpg?w=740"
+        image_url = "https://img.freepik.com/premium-vector/vector-kawai-cat-is-listening-music_995281-2173.jpg"
         st.image(image_url, width=150)
 
     with col2:
@@ -69,7 +73,7 @@ def gift_page():
             .audio-title {
                 font-family: 'Times New Roman', serif;
                 font-size: 36px;
-                color: #B22222;
+                color: #B22222; /* Brick red */
                 font-style: italic;
                 text-align: center;
             }
@@ -79,22 +83,40 @@ def gift_page():
         </div>
         """, unsafe_allow_html=True)
 
-    # Load and play M4A audio file
-    audio_file_path = "https://drive.google.com/file/d/1H2Wt9rvy2ZvF-5MexNqCsFR0kb7crZqz/view?usp=drive_link"
+    # Google Drive File ID (replace with actual file ID)
+    google_drive_id = "1H2Wt9rvy2ZvF-5MexNqCsFR0kb7crZqz"
+    google_drive_url = f"https://drive.google.com/uc?export=download&id={google_drive_id}"
+
+    # Local fallback file path
+    local_audio_path = r"C:\Chutamale.m4a"
+
+    # Try to stream from Google Drive
     try:
-        with open(audio_file_path, "rb") as f:
-            audio_bytes = f.read()
-        st.audio(audio_bytes, format="audio/m4a", start_time=0)
-    except Exception as e:
-        st.error(f"Error loading audio file: {e}")
+        response = requests.get(google_drive_url)
+        if response.status_code == 200:
+            st.audio(response.content, format="audio/m4a")
+        else:
+            st.error("⚠️ Could not load the audio from Google Drive. Trying local file...")
+            raise Exception("Google Drive audio failed")
+    except:
+        # Fallback to local file if Google Drive fails
+        if os.path.exists(local_audio_path):
+            with open(local_audio_path, "rb") as f:
+                audio_bytes = f.read()
+            st.audio(audio_bytes, format="audio/m4a")
+        else:
+            st.error("⚠️ Audio file not found! Please check your file location or upload it.")
 
     col5, col6 = st.columns([1, 1])
+
     with col5:
         image_below_url = "https://media1.tenor.com/m/YdX_1WLlaC4AAAAd/alverda-verdansa.gif"
         st.image(image_below_url, width=150)
+
     with col6:
         new_left_image_url = "https://media.tenor.com/0RDUsEAznV8AAAAj/girl-cute.gif"
         st.image(new_left_image_url, width=160)
+
         st.markdown("""
         <style>
             .right-align {
